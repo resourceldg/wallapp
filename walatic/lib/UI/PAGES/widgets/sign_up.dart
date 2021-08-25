@@ -245,7 +245,7 @@ class _SignUpState extends State<SignUp> {
                     child: Text(
                       'SIGN UP',
                       style: TextStyle(
-                          color: Colors.white,
+                          color: CustomTheme.yellowBlack,
                           fontSize: 25.0,
                           fontFamily: 'WorkSansBold'),
                     ),

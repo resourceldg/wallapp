@@ -108,7 +108,7 @@ class _SignInState extends State<SignIn> {
                               child: Icon(
                                 _obscureTextPassword
                                     ? FontAwesomeIcons.eye
-                                    : FontAwesomeIcons.eyeSlash,
+                                    : FontAwesomeIcons.solidEyeSlash,
                                 size: 15.0,
                                 color: CustomTheme.yellowBlack,
                               ),
@@ -159,7 +159,7 @@ class _SignInState extends State<SignIn> {
                     child: Text(
                       'LOGIN',
                       style: TextStyle(
-                          color: Colors.white,
+                          color: CustomTheme.yellowBlack,
                           fontSize: 25.0,
                           fontFamily: 'WorkSansBold'),
                     ),
@@ -265,7 +265,7 @@ class _SignInState extends State<SignIn> {
                     ),
                     child: const Icon(
                       FontAwesomeIcons.google,
-                      color: Color(0xFF0084ff),
+                      color: Color(0xdddb4437),
                     ),
                   ),
                 ),

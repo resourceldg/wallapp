@@ -93,11 +93,11 @@ class _LoginPageState extends State<LoginPage>
                     if (i == 0) {
                       setState(() {
                         right = Colors.grey;
-                        left = Colors.black;
+                        left = Colors.white;
                       });
                     } else if (i == 1) {
                       setState(() {
-                        right = Colors.black;
+                        right = Colors.white;
                         left = Colors.grey;
                       });
                     }
@@ -150,6 +150,7 @@ class _LoginPageState extends State<LoginPage>
                   ],
                   
       ),
+
       child: CustomPaint(
         painter: BubbleIndicatorPainter(pageController: _pageController),
         child: Row(
