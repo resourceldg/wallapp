@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:walatic/UI/PAGES/utils/bubble_indicator_painter.dart';
-import 'package:walatic/UI/PAGES/widgets/sign_in.dart';
-import 'package:walatic/UI/PAGES/widgets/sign_up.dart';
+import 'package:walatic/UI/VIEWS_CONTROLERS/LOGIN_CONTROLER/bubble_indicator_painter.dart';
+import 'package:walatic/UI/ORGANISM_WIDGETS/sign_in.dart';
+import 'package:walatic/UI/ORGANISM_WIDGETS/sign_up.dart';
 import 'package:walatic/theme.dart';
 
 class LoginPage extends StatefulWidget {

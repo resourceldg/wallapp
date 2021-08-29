@@ -1,29 +1,60 @@
+
+
 import 'package:flutter/material.dart';
-import 'package:walatic/UI/GLOBAL_WIDGETS/humidity.dart';
-import 'package:walatic/UI/GLOBAL_WIDGETS/pressure.dart';
-import 'package:walatic/UI/GLOBAL_WIDGETS/super_floating_action.dart';
-import 'package:walatic/UI/GLOBAL_WIDGETS/temperature.dart';
- 
+
+import 'package:walatic/theme.dart';
+
 class HomePage extends StatelessWidget {
+  const HomePage({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
-  
     return Scaffold(
+      backgroundColor: CustomTheme.darkOff,
       appBar: AppBar(
-        title: Text (' lola'),
+        
+        title:
+          Center(
+            child: 
+              Text('WallaUser',
+                style: TextStyle(
+                      color: CustomTheme.secundary),
+              ),
+          ),
+          
+        toolbarHeight: 100,
+        elevation : 15 ,
+        backgroundColor: CustomTheme.darkOn,
+        actions: [
+          Container(
+            
+            width: 50,
+            child: CircleAvatar(
+              radius: 20,
+              backgroundImage: AssetImage('assets/img/wabit_.jpg')
+            ),
+          
+          ),
+          SizedBox(
+                width: 20,
+              ),
+          Icon(Icons.more_vert),
+        ],//actions
       ),
-      body: 
-      Center(
+      body: Container(
+        
         child: Column(
-          children: [
-            Temperature(),
-            Pressure(),
-            Humidity()
-          ],
-        ),
+           
+            children:[
+              
+              Text('DarkLightText',
+                      style: TextStyle(
+                      color: CustomTheme.DarkLightText
+                      ),
+              ),
+            ],
+          ),
       ),
-
-      floatingActionButton: SuperFloatingAction(),
     );
   }
 }

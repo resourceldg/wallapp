@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:walatic/UI/WIDGET_CONTROLERS/LOGIN_CONTROLER/snackbar.dart';
 import 'package:walatic/theme.dart';
-import 'package:walatic/UI/widgets/snackbar.dart';
+
 
 class SignUp extends StatefulWidget {
   const SignUp({Key? key}) : super(key: key);

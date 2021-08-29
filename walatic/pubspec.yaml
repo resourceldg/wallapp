@@ -60,6 +60,8 @@ flutter:
     - family: WorkSansSemiBold
       fonts:
         - asset: assets/fonts/Work_Sans/WorkSans-SemiBold.ttf
+        - asset: assets/fonts/Work_Sans/SonsieOne-Regular.ttf
+        
 
     - family: WorkSansBold
       fonts:
