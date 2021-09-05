@@ -30,8 +30,10 @@ class HomePage extends StatelessWidget {
             
             width: 50,
             child: CircleAvatar(
-              radius: 20,
-              backgroundImage: AssetImage('assets/img/wabit_.jpg')
+              radius: 30,
+              backgroundImage: AssetImage('assets/img/wabit_.jpg'),
+              
+              
             ),
           
           ),

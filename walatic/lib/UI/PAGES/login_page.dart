@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:walatic/UI/VIEWS_CONTROLERS/LOGIN_CONTROLER/bubble_indicator_painter.dart';
 import 'package:walatic/UI/ORGANISM_WIDGETS/sign_in.dart';
 import 'package:walatic/UI/ORGANISM_WIDGETS/sign_up.dart';
+import 'package:walatic/UI/WIDGET_CONTROLERS/LOGIN_CONTROLER/bubble_indicator_painter.dart';
 import 'package:walatic/theme.dart';
 
 class LoginPage extends StatefulWidget {
@@ -203,12 +203,12 @@ class _LoginPageState extends State<LoginPage>
   }
 
   void _onSignInButtonPress() {
-    _pageController.animateToPage(1,
+    _pageController.animateToPage(0,
         duration: const Duration(milliseconds: 500), curve: Curves.decelerate);
   }
 
   void _onSignUpButtonPress() {
-    _pageController.animateToPage(0,
+    _pageController.animateToPage(1,
         duration: const Duration(milliseconds: 500), curve: Curves.decelerate);
   }
 }

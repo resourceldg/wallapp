@@ -1,3 +1,4 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:walatic/UI/PAGES/home_page.dart';
@@ -10,7 +11,9 @@ import 'MQTT_CONNECTORS/temp_connector.dart';
 import 'UI/PAGES/splash.dart';
 
  void main() async {
+  
   WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
   await TempProvider().init();
   await PresProvider().init();
   await HumProvider().init();
@@ -27,22 +30,22 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     
-   /*  return  MaterialApp(
+     /* return  MaterialApp(
         title: 'Material App',
         debugShowCheckedModeBanner: false,
         initialRoute: 'splash',
         routes:{
           'splash': (context)=>Splash()  
         },
-      ); */
-    return  MaterialApp(
+      );   */
+     return  MaterialApp(
         title: 'Material App',
         debugShowCheckedModeBanner: false,
         initialRoute: 'home',
         routes:{
           'home': (context)=>HomePage()  
         },
-      );
+      ); 
   
   }
 }
