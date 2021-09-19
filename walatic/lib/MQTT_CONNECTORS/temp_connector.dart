@@ -15,13 +15,13 @@ class TempProvider {
     client.useWebSocket = true;
     client.port = 8083;
     client.logging(on: true);
-    client.keepAlivePeriod = 0;
+    client.keepAlivePeriod = 60;
 
     /// Create a connection message to use or use the default one. The default one sets the
     /// client identifier, any supplied username/password and clean session,
     /// an example of a specific one below.
     final connMess = MqttConnectMessage()
-        .withClientIdentifier('Mqtt_MyClientUniqueId1')
+        .withClientIdentifier('Mqtt_MyClientUniqueId10')
         .withWillTopic('monitor') // If you set this you must set a will message
         .withWillMessage('hola')
         .startClean() // Non persistent session for testing

@@ -1,68 +1,36 @@
-
-
 import 'dart:io';
 
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:image_picker/image_picker.dart';
 import 'package:walatic/bloc/auth_cubit.dart';
 import 'package:walatic/bloc/my_user_cubit.dart';
 import 'package:walatic/model/user.dart';
 import 'package:walatic/repository/implementations/my_user_repository.dart';
+import 'package:image_picker/image_picker.dart';
 
-import 'package:walatic/theme.dart';
-
-class HomePage extends StatelessWidget {
+class HomeScreen extends StatelessWidget {
   static Widget create(BuildContext context) {
     return BlocProvider(
       create: (_) => MyUserCubit(MyUserRepository())..getMyUser(),
-      child: HomePage(),
+      child: HomeScreen(),
     );
   }
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-        backgroundColor: CustomTheme.darkOff,
-        appBar: AppBar(
-          
-          title:
-            Center(
-              child: 
-                Text('WallaUser',
-                  style: TextStyle(
-                        color: CustomTheme.secundary),
-                ),
-            ),
-            
-            
-          toolbarHeight: 100,
-          elevation : 15 ,
-          backgroundColor: CustomTheme.darkOn,
-          actions: [
-            IconButton(
-              icon: const Icon(Icons.logout),
-              tooltip: 'Logout',
-              onPressed: () => context.read<AuthCubit>().signOut(),
-            ),
-            
-             /*  width: 50,
-              child: CircleAvatar(
-                radius: 30,
-                backgroundImage: AssetImage('assets/img/wabit_.jpg'),
-                
-                
-              ), */
-            
-            SizedBox(
-                  width: 20,
-                ),
-            Icon(Icons.more_vert),
-          ],//actions
-        ),
-        body: BlocBuilder<MyUserCubit, MyUserState>(
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Home Page'),
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.logout),
+            tooltip: 'Logout',
+            onPressed: () => context.read<AuthCubit>().signOut(),
+          )
+        ],
+      ),
+      body: BlocBuilder<MyUserCubit, MyUserState>(
         builder: (_, state) {
           if (state is MyUserReadyState) {
             return _MyUserSection(
@@ -74,11 +42,9 @@ class HomePage extends StatelessWidget {
           return Center(child: CircularProgressIndicator());
         },
       ),
-      ),
     );
   }
 }
-
 
 class _MyUserSection extends StatefulWidget {
   final MyUser? user;
@@ -110,20 +76,20 @@ class _MyUserSectionState extends State<_MyUserSection> {
   Widget build(BuildContext context) {
     Widget image = Image.asset(
       'assets/intro_3.png',
-      fit: BoxFit.cover,
+      fit: BoxFit.fill,
     );
 
     if (widget.pickedImage != null) {
       image = Image.file(
         widget.pickedImage!,
-        fit: BoxFit.cover,
+        fit: BoxFit.fill,
       );
     } else if (widget.user?.image != null && widget.user!.image!.isNotEmpty) {
       image = CachedNetworkImage(
         imageUrl: widget.user!.image!,
         progressIndicatorBuilder: (_, __, progress) => CircularProgressIndicator(value: progress.progress),
         errorWidget: (_, __, ___) => Icon(Icons.error),
-        fit: BoxFit.cover,
+        fit: BoxFit.fill,
       );
     }
 

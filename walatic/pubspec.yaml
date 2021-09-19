@@ -70,6 +70,7 @@ flutter:
     - switche.riv
     - onoff.riv
     - assets/img/
+    - assets/
 
   fonts:
     - family: WorkSansSemiBold

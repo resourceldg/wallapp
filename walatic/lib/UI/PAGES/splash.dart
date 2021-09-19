@@ -1,9 +1,10 @@
 
 import 'package:flutter/material.dart';
 import 'package:rive/rive.dart';
+import 'package:walatic/ui/login.dart';
 
 import 'home_page.dart';
-import 'login_page.dart';
+
 
 class Splash extends StatefulWidget {
   const Splash({Key? key}) : super(key: key);
