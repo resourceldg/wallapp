@@ -1,17 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:mqtt_client/mqtt_client.dart';
 import 'package:syncfusion_flutter_gauges/gauges.dart';
-import 'package:walatic/MQTT_CONNECTORS/hum_connector.dart';
+import 'package:walatic/MQTT_CONNECTORS/pres_connector.dart';
+import 'package:walatic/MQTT_CONNECTORS/termocuple_connector.dart';
 
 
 
 
-class Humidity extends StatelessWidget {
+class Termocuple extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return 
           StreamBuilder(
-            stream: HumProvider().client.updates,
+            stream: TermocupleProvider().client.updates,
             builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
               switch (snapshot.connectionState) {
                 case ConnectionState.none:
@@ -32,8 +33,8 @@ class Humidity extends StatelessWidget {
                         child: SfRadialGauge(
                           axes: <RadialAxis>[
                           RadialAxis(
-                            minimum: 0,
-                            maximum: 100,
+                            minimum: -40,
+                            maximum: 200,
                             showLabels: false,
                             showTicks: false,
                             startAngle: 270,
@@ -63,7 +64,7 @@ class Humidity extends StatelessWidget {
                                   
                                   child: Text(
                                   ' $pt',
-                                  style: TextStyle(fontSize: 20, color: Colors.white),
+                                  style: TextStyle(fontSize: 14, color: Colors.white),
                                   ),
                                 ),
                               )),
@@ -75,7 +76,7 @@ class Humidity extends StatelessWidget {
                                 child: Center(
                                   
                                   child: Text(
-                                  ' Humedad',
+                                  ' Termocupla',
                                   style: TextStyle(fontSize: 16, color: Colors.blue),
                                   ),
                                 ),

@@ -12,11 +12,11 @@ class MyApp extends StatelessWidget {
     return BlocListener<AuthCubit, AuthState>(
       listener: (context, state) {
         if (state is AuthSignedOut){
-          _navigatorKey.currentState?.pushNamedAndRemoveUntil(Routes.login, (r) => false);
+          _navigatorKey.currentState?.pushNamedAndRemoveUntil(Routes.circular, (r) => false);
 
 
         } else if (state is AuthSignedIn) {
-          _navigatorKey.currentState?.pushNamedAndRemoveUntil(Routes.Home_Page, (r) => false);
+          _navigatorKey.currentState?.pushNamedAndRemoveUntil(Routes.home, (r) => false);
         }
       },
       child: MyApp(),

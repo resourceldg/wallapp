@@ -1,17 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:mqtt_client/mqtt_client.dart';
 import 'package:syncfusion_flutter_gauges/gauges.dart';
-import 'package:walatic/MQTT_CONNECTORS/hum_connector.dart';
+import 'package:walatic/MQTT_CONNECTORS/cpl_connector.dart';
 
 
 
 
-class Humidity extends StatelessWidget {
+
+class Cpl extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return 
           StreamBuilder(
-            stream: HumProvider().client.updates,
+            stream: CplProvider().client.updates,
             builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
               switch (snapshot.connectionState) {
                 case ConnectionState.none:
@@ -75,7 +76,7 @@ class Humidity extends StatelessWidget {
                                 child: Center(
                                   
                                   child: Text(
-                                  ' Humedad',
+                                  ' CPL',
                                   style: TextStyle(fontSize: 16, color: Colors.blue),
                                   ),
                                 ),

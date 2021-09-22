@@ -30,7 +30,7 @@ class TempProvider {
     client.connectionMessage = connMess;
 
     try {
-      await client.connect('testuser','testuser');
+      await client.connect();//if login true ('user', 'pass')
     } on NoConnectionException catch (e) {
       // Raised by the client when connection fails.
       print('EXAMPLE::client exception - $e');

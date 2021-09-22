@@ -23,7 +23,7 @@ class HumProvider {
     /// client identifier, any supplied username/password and clean session,
     /// an example of a specific one below.
     final connMess = MqttConnectMessage()
-        .withClientIdentifier('Mqtt_MyClientUnique')
+        .withClientIdentifier('Mqtt_MyClientUnique13')
         .withWillTopic('monitor') // If you set this you must set a will message
         .withWillMessage('hola')
         .startClean() // Non persistent session for testing
@@ -32,7 +32,7 @@ class HumProvider {
     client.connectionMessage = connMess;
 
     try {
-      await client.connect();
+      await client.connect();//if login true ('user', 'pass')
     } on NoConnectionException catch (e) {
       // Raised by the client when connection fails.
       print('EXAMPLE::client exception - $e');

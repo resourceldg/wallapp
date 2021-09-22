@@ -1,19 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:mqtt_client/mqtt_client.dart';
+import 'package:syncfusion_flutter_gauges/gauges.dart';
 import 'package:walatic/MQTT_CONNECTORS/temp_connector.dart';
 
 
 
 class Temperature extends StatelessWidget {
+  
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Column(
-        children: [
-          Text(
-            "WITH STREAMBUILDER",
-            style: TextStyle(fontWeight: FontWeight.bold),
-          ),
+    
+    return 
           StreamBuilder(
             stream: TempProvider().client.updates,
             builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
@@ -29,14 +26,54 @@ class Temperature extends StatelessWidget {
                   final recMess = c![0].payload as MqttPublishMessage;
                   final pt = MqttPublishPayload.bytesToStringAsString(
                       recMess.payload.message);
-                
-                  return Text(
-                      "$pt");
-              }
+                  return Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Container(
+                        width: 60,
+                        height: 200,
+                        
+                        child: SfLinearGauge(
+                            
+                            ranges: [
+                              //Changes the color. The start and end values are 0 to 100 by default
+                              LinearGaugeRange(startValue: -40, endValue: 10,color: Colors.blueAccent),
+                              LinearGaugeRange(startValue: 10, endValue: 30,color: Colors.yellowAccent),
+                              LinearGaugeRange(startValue: 30, endValue: 55,color: Colors.orangeAccent)
+                            ],
+                            minimum: -40.0,
+                            interval: 20,
+                            maximum: 55.0,
+                            markerPointers: [LinearShapePointer(value: double.parse(pt),color:Colors.red,),],
+                            /* barPointers: [
+                              LinearBarPointer(value: double.parse(pt))
+                            ], */
+                            orientation: LinearGaugeOrientation.vertical,
+                            majorTickStyle: LinearTickStyle(length: 5),
+                            axisLabelStyle: TextStyle(fontSize: 12.0, color: Colors.black),
+                            axisTrackStyle: LinearAxisTrackStyle(
+                                color: Colors.grey,
+                                edgeStyle: LinearEdgeStyle.bothFlat,
+                                thickness: 7.0,
+                                
+                                
+                                borderColor: Colors.grey)
+                            
+                            ),
+                        margin: EdgeInsets.all(10),
+                        
+                        
+                        
+                      
+                       
+                      ),
+                      
+                  );
+                 
+              } 
+
             },
-          ),
-        ],
-      ),
-    );
+          );
+     
   }
+
 }

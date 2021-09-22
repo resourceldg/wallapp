@@ -18,7 +18,7 @@ abstract class AuthRepositoryBase {
 
   Future<AuthUser?> signInWithGoogle();
 
-  //Future<AuthUser?> signInWithFacebook();
+  Future<AuthUser?> signInWithFacebook();
 
   Future<AuthUser?> signInAnonymously();
 

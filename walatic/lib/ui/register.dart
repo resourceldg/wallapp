@@ -18,17 +18,17 @@ class _RegisterState extends State<Register> {
 
   Widget _buildEmail() {
   return TextFormField(
-    
-    validator: (value) => !isEmail(_emailController.text) ? "Sorry, we do not recognize this email address" : null,
+    decoration: InputDecoration(labelText: 'Ingresa tu correo'),
+    validator: (value) => !isEmail(_emailController.text) ? "El formato de correo es incorrecto" : null,
     style: TextStyle(
-        color: Color.fromRGBO(252, 252, 252, 1), fontFamily: 'RadikalLight'),
+        color: Color.fromRGBO(10, 10, 10, 1), fontFamily: 'RadikalLight'),
     
   );
 }
 
 
  String? emailValidator(String? value) {
-    return ((value) => !isEmail(value) ? "Sorry, we do not recognize this email address" : null).toString();
+    return ((value) => !isEmail(value) ? "El formato de correo  esincorrecto" : null).toString();
   } 
 
 
@@ -43,15 +43,16 @@ bool isEmail(String value) {
 
 Widget _buildConfirmPassword() {
   return Container(
-      margin: const EdgeInsets.only(left: 40),
+      
       child: TextFormField(
         obscureText: true,
+        decoration: InputDecoration(labelText: 'Repite tu contraseña'),
         validator: (value) => value!.isEmpty ||
                 (value.isNotEmpty && value != _passwordController.text)
-            ? "Must match the previous entry"
+            ? "Las contraseñas deben coincidir"
             : null,
         style: TextStyle(
-            color: Color.fromRGBO(252, 252, 252, 1), fontFamily: 'RadikalLight'),
+            color: Color.fromRGBO(10, 10, 10, 1), fontFamily: 'RadikalLight'),
         
       ));
 }
@@ -59,11 +60,12 @@ Widget _buildConfirmPassword() {
 Widget _buildPassword() {
   return TextFormField(
     obscureText: true,
+    decoration: InputDecoration(labelText: 'Elige una contraseña'),
     controller: _passwordController,
     validator: (value) =>
-        value!.length <= 6 ? "Password must be 6 or more characters in length" : null,
+        value!.length <= 6 ? "Debe contener al menos 6 caracteres" : null,
     style: TextStyle(
-        color: Color.fromRGBO(252, 252, 252, 1), fontFamily: 'RadikalLight'),
+        color: Color.fromRGBO(10, 10, 10, 1), fontFamily: 'RadikalLight'),
     
   );
 }
@@ -71,44 +73,48 @@ Widget _buildPassword() {
 
   
   String? passwordValidator(String? value) {
-    if (value == null || value.isEmpty) return 'This is a required field';
-    if (value.length < 6) return 'Password should be at least 6 letters';
-    if (_passwordController.text != _repeatPasswordController.text) return 'Password do not match';
+    if (value == null || value.isEmpty) return 'Este campo es requerido';
+    if (value.length < 6) return 'Debe contener al menos 6 caracteres';
+    if (_passwordController.text != _repeatPasswordController.text) return 'Las contraseñas no coinciden';
     return null;
   }
 
   @override
   Widget build(BuildContext context) {
+    
     return Scaffold(
         resizeToAvoidBottomInset: false,
-        appBar: AppBar(title: Text('Create account')),
+        appBar: AppBar(title: Text('Crear Cuenta'),backgroundColor: Colors.deepPurple,),
         body: BlocBuilder<AuthCubit, AuthState>(
           builder: (_, state) {
             return SingleChildScrollView(
               child: Form(
                 key: _formKey,
-
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        if (state is AuthSigningIn) Center(child: CircularProgressIndicator()),                    
-                        _buildEmail(),
-                        _buildPassword(),
-                        _buildConfirmPassword(),
-                        Center(
-                          child: ElevatedButton(
-                            child: const Text('Create'),
-                            onPressed: () {
-                              if (_formKey.currentState?.validate() == true) {
-                                context.read<AuthCubit>().createUserWithEmailAndPassword(
-                                      _emailController.text,
-                                      _passwordController.text,
-                                    );
-                              }
-                            },
+                    child: Padding(
+                      padding: EdgeInsets.symmetric(horizontal: 16),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          if (state is AuthSigningIn) Center(child: CircularProgressIndicator()),                    
+                          _buildEmail(),
+                          _buildPassword(),
+                          _buildConfirmPassword(),
+                          SizedBox(height: 20),
+                          Center(
+                            child: ElevatedButton(
+                              child: const Text('Crear', style: TextStyle(fontSize: 22)),
+                              onPressed: () {
+                                if (_formKey.currentState?.validate() == true) {
+                                  context.read<AuthCubit>().createUserWithEmailAndPassword(
+                                        _emailController.text,
+                                        _passwordController.text,
+                                      );
+                                }
+                              },
+                            ),
                           ),
-                        ),
-                      ],
+                        ],
+                      ),
                     ),
                 ),
               );

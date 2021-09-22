@@ -3,25 +3,27 @@ import 'dart:io';
 import 'package:mqtt_client/mqtt_client.dart';
 import 'package:mqtt_client/mqtt_server_client.dart';
 
-class PresProvider {
+class TermocupleProvider {
 
-  static final PresProvider _instance = PresProvider._internal();
-  factory PresProvider() => _instance;
-  PresProvider._internal();
+  static final TermocupleProvider _instance = TermocupleProvider._internal();
+  factory TermocupleProvider() => _instance;
+  TermocupleProvider._internal();
 
-  final client = MqttServerClient('ws://walatic.com', '');
+  final client = MqttServerClient('ws://walatic.com', 'Mqtt_MyClientUnique');
+
 
   Future<void> init() async {
     client.useWebSocket = true;
     client.port = 8083;
-    client.logging(on: false);
+    client.logging(on:false);
     client.keepAlivePeriod = 60;
+   
 
     /// Create a connection message to use or use the default one. The default one sets the
     /// client identifier, any supplied username/password and clean session,
     /// an example of a specific one below.
     final connMess = MqttConnectMessage()
-        .withClientIdentifier('Mqtt_MyClientUniqueId11')
+        .withClientIdentifier('Mqtt_MyClientUnique19')
         .withWillTopic('monitor') // If you set this you must set a will message
         .withWillMessage('hola')
         .startClean() // Non persistent session for testing
@@ -30,8 +32,7 @@ class PresProvider {
     client.connectionMessage = connMess;
 
     try {
-      
-      await client.connect(); //if login true ('user', 'pass')
+      await client.connect();//if login true ('user', 'pass')
     } on NoConnectionException catch (e) {
       // Raised by the client when connection fails.
       print('EXAMPLE::client exception - $e');
@@ -54,9 +55,8 @@ class PresProvider {
     }
 
     //subscriber
-    const topic = '1/casa/pres'; // Not a wildcard topic
+    const topic = '1/termocupla'; // Not a wildcard topic
     client.subscribe(topic, MqttQos.atMostOnce);
-
 
     /// The client has a change notifier object(see the Observable class) which we then listen to to get
     /// notifications of published updates to each subscribed topic.

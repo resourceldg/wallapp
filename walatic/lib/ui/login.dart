@@ -17,7 +17,7 @@ class LoginPage extends StatelessWidget {
     final _passwordController = TextEditingController();
     
     String? emptyValidator(String? value) {
-    return (value == null || value.isEmpty) ? 'This is a required field' : null;
+    return (value == null || value.isEmpty) ? 'El campo es requerido' : null;
     }
 
 
@@ -33,13 +33,14 @@ class LoginPage extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: <Widget>[                    
-                  Container(
-                        alignment: Alignment.center,
-                        child: Text(
-                          'Sign in or create an account',
-                          textAlign: TextAlign.center,
-                          style: const TextStyle(fontSize: 24.0, fontWeight: FontWeight.bold),
-                        ),
+                  Column(
+                        children: 
+                          [Text(
+                            ' ») Hola Extraño (« ',
+                            textAlign: TextAlign.center,
+                            style: const TextStyle(fontSize: 22.0, fontWeight: FontWeight.bold, color: Colors.black45),
+                          ),
+                        ],
                   ),
                     
                     Form(
@@ -58,19 +59,19 @@ class LoginPage extends StatelessWidget {
                             SizedBox(height: 8),
                             TextFormField(
                               controller: _emailController,
-                              decoration: InputDecoration(labelText: 'Email'),
+                              decoration: InputDecoration(labelText: 'Ingresa tu correo'),
                               validator: emptyValidator,
                             ),
                             SizedBox(height: 8),
                             TextFormField(
                               controller: _passwordController,
-                              decoration: InputDecoration(labelText: 'Password'),
+                              decoration: InputDecoration(labelText: 'Y tu contraseña'),
                               validator: emptyValidator,
                             ),
                             SizedBox(height: 18),
                             Center(
                               child: ElevatedButton(
-                                child: const Text('Login'),
+                                child: const Text('Entrar',style: TextStyle( fontSize: 18)),
                                 onPressed: () {
                                   if (_formKey.currentState?.validate() == true) {
                                     context.read<AuthCubit>().signInWithEmailAndPassword(
@@ -92,23 +93,23 @@ class LoginPage extends StatelessWidget {
                         children: [
                           SizedBox(height: 50),
                           _LoginButton(
-                            text: 'Sign in with Google',
+                            text: 'Ingresar con Google',
                             imagePath: 'assets/icon_google.png',
                             color: Colors.white,
-                            textColor: Colors.grey,
+                            textColor: Colors.blueGrey,
                             onTap: () => authCubit.signInWithGoogle(),
                           ),
-                          SizedBox(height: 8),
+                          SizedBox(height: 15),
                           _LoginButton(
-                            text: 'Sign in with Facebook',
+                            text: 'Ingresar con Facebook',
                             imagePath: 'assets/icon_facebook.png',
                             color: Colors.blueAccent,
-                            //onTap: () => authCubit.signInWithFacebook(),
+                            onTap: () => authCubit.signInWithFacebook(),
                           ),
                           
-                          SizedBox(height: 8),
+                          SizedBox(height: 15),
                           _LoginButton(
-                            text: 'Sign in Anonymously',
+                            text: 'Ingresar anónimo',
                             imagePath: 'assets/icon_question.png',
                             color: Colors.deepPurpleAccent,
                             textColor: Colors.white,
@@ -116,10 +117,10 @@ class LoginPage extends StatelessWidget {
                           ),
                           SizedBox(height: 48),
                           OutlinedButton(
-                            child: Text('Create account'),
+                            child: Text('Crea una cuenta en Walatic', style: TextStyle( fontSize: 18, color: Colors.purple),),
                             onPressed: () {
                               authCubit.reset();
-                              Navigator.pushNamed(context, Routes.createAccount);
+                              Navigator.pushNamed(context, Routes.register);
                             },
                           ),
                           SizedBox(height: 10),
@@ -177,8 +178,7 @@ class _LoginButton extends StatelessWidget {
                 text,
                 style: TextStyle(
                   color: textColor,
-                  fontWeight: FontWeight.bold,
-                  fontSize: 18,
+                  fontSize: 20,
                 ),
               )
             ],

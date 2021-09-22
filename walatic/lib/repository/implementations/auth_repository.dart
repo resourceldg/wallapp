@@ -37,7 +37,7 @@ class AuthRepository extends AuthRepositoryBase {
     return _userFromFirebase(authResult.user);
   }
 
-/*   @override
+ @override
   Future<AuthUser?> signInWithFacebook() async {
     final result = await FacebookAuth.instance.login();
 
@@ -45,7 +45,7 @@ class AuthRepository extends AuthRepositoryBase {
 
     final authResult = await FirebaseAuth.instance.signInWithCredential(facebookAuthCredential);
     return _userFromFirebase(authResult.user);
-  } */
+  } 
 
   @override
   Future<AuthUser?> signInAnonymously() async {
