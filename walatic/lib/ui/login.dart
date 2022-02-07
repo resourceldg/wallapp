@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:walatic/bloc/auth_cubit.dart';
 import 'package:walatic/navigation/routes.dart';
+import 'package:walatic/repository/IMPLEMENTATION/FASTAPI/api_auth.dart';
 
 
 class LoginPage extends StatelessWidget {
@@ -73,11 +74,13 @@ class LoginPage extends StatelessWidget {
                               child: ElevatedButton(
                                 child: const Text('Entrar',style: TextStyle( fontSize: 18)),
                                 onPressed: () {
+                                  ApiAuth().auth(email: _emailController.text, password: _passwordController.text);
                                   if (_formKey.currentState?.validate() == true) {
-                                    context.read<AuthCubit>().signInWithEmailAndPassword(
+                                    /* context.read<AuthCubit>().signInWithEmailAndPassword(
                                           _emailController.text,
                                           _passwordController.text,
-                                        );
+                                        ); */
+                                       
                                   }
                                 },
                               ),
@@ -88,43 +91,9 @@ class LoginPage extends StatelessWidget {
                     ),
                     if (isSigningIn) CircularProgressIndicator(),
                     Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 50.0),
+                      padding: const EdgeInsets.symmetric(horizontal: 30.0),
                       child: Column(
-                        children: [
-                          SizedBox(height: 50),
-                          _LoginButton(
-                            text: 'Ingresar con Google',
-                            imagePath: 'assets/icon_google.png',
-                            color: Colors.white,
-                            textColor: Colors.blueGrey,
-                            onTap: () => authCubit.signInWithGoogle(),
-                          ),
-                          SizedBox(height: 15),
-                          _LoginButton(
-                            text: 'Ingresar con Facebook',
-                            imagePath: 'assets/icon_facebook.png',
-                            color: Colors.blueAccent,
-                            onTap: () => authCubit.signInWithFacebook(),
-                          ),
-                          
-                          SizedBox(height: 15),
-                          _LoginButton(
-                            text: 'Ingresar anónimo',
-                            imagePath: 'assets/icon_question.png',
-                            color: Colors.deepPurpleAccent,
-                            textColor: Colors.white,
-                            onTap: () => authCubit.signInAnonymously(),
-                          ),
-                          SizedBox(height: 48),
-                          OutlinedButton(
-                            child: Text('Crea una cuenta en Walatic', style: TextStyle( fontSize: 18, color: Colors.purple),),
-                            onPressed: () {
-                              authCubit.reset();
-                              Navigator.pushNamed(context, Routes.register);
-                            },
-                          ),
-                          SizedBox(height: 10),
-                        ],
+                    
                       ),
                     )
                   ],

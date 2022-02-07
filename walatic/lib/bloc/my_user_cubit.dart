@@ -2,8 +2,11 @@ import 'dart:async';
 import 'dart:io';
 
 import 'package:equatable/equatable.dart';
+import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:walatic/model/user.dart';
+import 'package:image_picker/image_picker.dart';
+import 'package:walatic/MODELS/user.dart';
 import 'package:walatic/repository/my_user_repository.dart';
 
 class MyUserCubit extends Cubit<MyUserState> {
@@ -21,17 +24,18 @@ class MyUserCubit extends Cubit<MyUserState> {
 
   Future<void> getMyUser() async {
     emit(MyUserLoadingState());
-    _user = (await _userRepository.getMyUser()) ?? MyUser('', '', '', 0);
+    _user = (await _userRepository.getMyUser()) ?? MyUser('', '', '','');
     emit(MyUserReadyState(_user, _pickedImage));
   }
 
   Future<void> saveMyUser(
     String uid,
     String name,
-    String lastName,
-    int age,
+    String email,
+    String password,
+    
   ) async {
-    _user = MyUser(uid, name, lastName, age, image: _user.image);
+    _user = MyUser(uid, name,email, password, image: _user.image);
     emit(MyUserReadyState(_user, _pickedImage, isSaving: true));
     // Just for testing we add a 3 seconds delay: This allows to see the loading in the home page
     await Future.delayed(Duration(seconds: 3));

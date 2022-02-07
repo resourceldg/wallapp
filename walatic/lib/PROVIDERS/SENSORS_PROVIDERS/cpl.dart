@@ -34,7 +34,7 @@ class Cpl extends StatelessWidget {
                           axes: <RadialAxis>[
                           RadialAxis(
                             minimum: 0,
-                            maximum: 100,
+                            maximum: 1024,
                             showLabels: false,
                             showTicks: false,
                             startAngle: 270,
@@ -63,7 +63,7 @@ class Cpl extends StatelessWidget {
                                 child: Center(
                                   
                                   child: Text(
-                                  ' $pt',
+                                  '$pt',
                                   style: TextStyle(fontSize: 20, color: Colors.white),
                                   ),
                                 ),

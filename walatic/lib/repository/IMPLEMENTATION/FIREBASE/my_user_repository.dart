@@ -1,7 +1,8 @@
 import 'dart:io';
 
-import 'package:walatic/model/user.dart';
-import 'package:walatic/provider/firebase_provider.dart';
+import 'package:walatic/MODELS/user.dart';
+
+import 'package:walatic/PROVIDERS/API_PROVIDERS/firebase_provider.dart';
 import 'package:walatic/repository/my_user_repository.dart';
 
 class MyUserRepository extends MyUserRepositoryBase {

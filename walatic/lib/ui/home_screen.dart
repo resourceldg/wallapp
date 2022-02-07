@@ -1,13 +1,11 @@
 import 'dart:io';
-
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:walatic/bloc/auth_cubit.dart';
 import 'package:walatic/bloc/my_user_cubit.dart';
-import 'package:walatic/model/user.dart';
-import 'package:walatic/repository/implementations/my_user_repository.dart';
-import 'package:image_picker/image_picker.dart';
+import 'package:walatic/MODELS/user.dart';
+import 'package:walatic/repository/IMPLEMENTATION/FIREBASE/my_user_repository.dart';
+
 
 class HomeScreen extends StatelessWidget {
   static Widget create(BuildContext context) {
@@ -35,7 +33,6 @@ class HomeScreen extends StatelessWidget {
           if (state is MyUserReadyState) {
             return _MyUserSection(
               user: state.user,
-              pickedImage: state.pickedImage,
               isSaving: state.isSaving,
             );
           }
@@ -59,39 +56,22 @@ class _MyUserSection extends StatefulWidget {
 
 class _MyUserSectionState extends State<_MyUserSection> {
   final _nameController = TextEditingController();
-  final _lastNameController = TextEditingController();
-  final _ageController = TextEditingController();
+  final _emailController = TextEditingController();
+  final _passwordController = TextEditingController();
 
-  final picker = ImagePicker();
+  
 
   @override
   void initState() {
     _nameController.text = widget.user?.name ?? '';
-    _lastNameController.text = widget.user?.lastName ?? '';
-    _ageController.text = widget.user?.age.toString() ?? '';
+    _emailController.text = widget.user?.email?? '';
+    _passwordController.text = widget.user?.password.toString() ?? '';
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
-    Widget image = Image.asset(
-      'assets/intro_3.png',
-      fit: BoxFit.fill,
-    );
 
-    if (widget.pickedImage != null) {
-      image = Image.file(
-        widget.pickedImage!,
-        fit: BoxFit.fill,
-      );
-    } else if (widget.user?.image != null && widget.user!.image!.isNotEmpty) {
-      image = CachedNetworkImage(
-        imageUrl: widget.user!.image!,
-        progressIndicatorBuilder: (_, __, progress) => CircularProgressIndicator(value: progress.progress),
-        errorWidget: (_, __, ___) => Icon(Icons.error),
-        fit: BoxFit.fill,
-      );
-    }
 
     return SingleChildScrollView(
       child: Container(
@@ -101,17 +81,15 @@ class _MyUserSectionState extends State<_MyUserSection> {
           children: [
             GestureDetector(
               onTap: () async {
-                final pickedImage = await picker.getImage(source: ImageSource.gallery);
-                if (pickedImage != null) {
-                  context.read<MyUserCubit>().setImage(File(pickedImage.path));
-                }
+                final pickedImage = '';
+                
               },
               child: Center(
                 child: ClipOval(
                   child: Container(
                     width: 150,
                     height: 150,
-                    child: image,
+                    
                   ),
                 ),
               ),
@@ -131,12 +109,12 @@ class _MyUserSectionState extends State<_MyUserSection> {
             ),
             SizedBox(height: 8),
             TextField(
-              controller: _lastNameController,
+              controller: _emailController,
               decoration: InputDecoration(labelText: 'Last Name'),
             ),
             SizedBox(height: 8),
             TextField(
-              controller: _ageController,
+              controller: _passwordController,
               keyboardType: TextInputType.number,
               decoration: InputDecoration(labelText: 'Age'),
             ),
@@ -155,8 +133,8 @@ class _MyUserSectionState extends State<_MyUserSection> {
                                     .user
                                     .uid,
                                 _nameController.text,
-                                _lastNameController.text,
-                                int.tryParse(_ageController.text) ?? 0,
+                                _emailController.text,
+                              _passwordController.text,
                               );
                         },
                 ),

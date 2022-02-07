@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mqtt_client/mqtt_client.dart';
 import 'package:syncfusion_flutter_gauges/gauges.dart';
-import 'package:walatic/MQTT_CONNECTORS/hum_connector.dart';
 import 'package:walatic/MQTT_CONNECTORS/hum_suelo_connector.dart';
 
 
@@ -63,7 +62,7 @@ class Suelo extends StatelessWidget {
                                 child: Center(
                                   
                                   child: Text(
-                                  ' $pt',
+                                  '$pt',
                                   style: TextStyle(fontSize: 20, color: Colors.white),
                                   ),
                                 ),

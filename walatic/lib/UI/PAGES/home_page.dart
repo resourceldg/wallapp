@@ -8,18 +8,13 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:walatic/bloc/auth_cubit.dart';
 import 'package:walatic/bloc/my_user_cubit.dart';
-import 'package:walatic/model/user.dart';
-import 'package:walatic/repository/implementations/my_user_repository.dart';
+import 'package:walatic/MODELS/user.dart';
+
 
 import 'package:walatic/theme.dart';
 
 class HomePage extends StatelessWidget {
-  static Widget create(BuildContext context) {
-    return BlocProvider(
-      create: (_) => MyUserCubit(MyUserRepository())..getMyUser(),
-      child: HomePage(),
-    );
-  }
+ 
 
   @override
   Widget build(BuildContext context) {
@@ -66,8 +61,7 @@ class HomePage extends StatelessWidget {
         builder: (_, state) {
           if (state is MyUserReadyState) {
             return _MyUserSection(
-              user: state.user,
-              pickedImage: state.pickedImage,
+              
               isSaving: state.isSaving,
             );
           }
@@ -93,16 +87,16 @@ class _MyUserSection extends StatefulWidget {
 
 class _MyUserSectionState extends State<_MyUserSection> {
   final _nameController = TextEditingController();
-  final _lastNameController = TextEditingController();
-  final _ageController = TextEditingController();
+  final _emailController = TextEditingController();
+  final _passwordController = TextEditingController();
 
   final picker = ImagePicker();
 
   @override
   void initState() {
     _nameController.text = widget.user?.name ?? '';
-    _lastNameController.text = widget.user?.lastName ?? '';
-    _ageController.text = widget.user?.age.toString() ?? '';
+    _emailController.text = widget.user?.email ?? '';
+    _passwordController.text = widget.user?.password ?? '';
     super.initState();
   }
 
@@ -132,72 +126,7 @@ class _MyUserSectionState extends State<_MyUserSection> {
         padding: EdgeInsets.all(16),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            GestureDetector(
-              onTap: () async {
-                final pickedImage = await picker.getImage(source: ImageSource.gallery);
-                if (pickedImage != null) {
-                  context.read<MyUserCubit>().setImage(File(pickedImage.path));
-                }
-              },
-              child: Center(
-                child: ClipOval(
-                  child: Container(
-                    width: 150,
-                    height: 150,
-                    child: image,
-                  ),
-                ),
-              ),
-            ),
-            SizedBox(height: 8),
-            BlocBuilder<AuthCubit, AuthState>(
-              buildWhen: (_, current) => current is AuthSignedIn,
-              builder: (_, state) {
-                return Center(
-                  child: Text('UID: ${(state as AuthSignedIn).user.uid}'),
-                );
-              },
-            ),
-            TextField(
-              controller: _nameController,
-              decoration: InputDecoration(labelText: 'Name'),
-            ),
-            SizedBox(height: 8),
-            TextField(
-              controller: _lastNameController,
-              decoration: InputDecoration(labelText: 'Last Name'),
-            ),
-            SizedBox(height: 8),
-            TextField(
-              controller: _ageController,
-              keyboardType: TextInputType.number,
-              decoration: InputDecoration(labelText: 'Age'),
-            ),
-            SizedBox(height: 8),
-            Stack(
-              alignment: Alignment.center,
-              children: [
-                ElevatedButton(
-                  child: const Text('Save'),
-                  onPressed: widget.isSaving
-                      ? null
-                      : () {
-                          context.read<MyUserCubit>().saveMyUser(
-                                (context.read<AuthCubit>().state
-                                        as AuthSignedIn)
-                                    .user
-                                    .uid,
-                                _nameController.text,
-                                _lastNameController.text,
-                                int.tryParse(_ageController.text) ?? 0,
-                              );
-                        },
-                ),
-                if (widget.isSaving) CircularProgressIndicator(),
-              ],
-            ),
-          ],
+          
         ),
       ),
     );

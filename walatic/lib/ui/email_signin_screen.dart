@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:walatic/bloc/auth_cubit.dart';
-
+import 'package:walatic/repository/IMPLEMENTATION/auth_api.dart';
 class EmailSignIn extends StatefulWidget {
   static Widget create(BuildContext context) => EmailSignIn();
 

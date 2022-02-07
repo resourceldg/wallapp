@@ -25,37 +25,61 @@ class _Circular    extends State<Circular> {
       padding: const EdgeInsets.all(0.8),
       child: Scaffold(
         body: SingleChildScrollView(
+          scrollDirection:Axis.vertical ,
             
                 child: 
                     Container(
-
+                    padding: const EdgeInsets.all(5.0),
                       child:
                         Wrap(
-                          
-                          children: [
-                            Row(
+                          alignment: WrapAlignment.spaceAround,
                               children: [
-                                Temperature(),
-                                Humidity(),
-                                Pressure()     
-                              ],
-                            
-                            ),
-                            Row(
-                              children: [
-                                Suelo(),
-                                Cpl(),
-                                Termocuple()                 
-                              ],
-                            
-                            ),
-                          ]  
-                        ),
-                   
+                                Row(
+                                  children: [
+                                    
+                                  
+                                          Expanded(
+                                            
+                                            child: Container(
+                                              width: 40,
+                                              child: Column(
+                                                children: [
+                                                  Temperature(),
+                                                ],
+                                              ),
+                                            ),
+                                          ),  
+                                       
+                                    
+                                
+                                        Column(
+                                          
+                                          children: [
+                                            Row(
+                                              children: [
+                                                Humidity(),
+                                                Pressure()   
+                                              ],
+                                            ),
+                                            Row(
+                                              children: [
+                                              Suelo(),
+                                              Termocuple(),
+                                              Cpl()   
+                                              ],
+                                            ),                                                                 
+                                    
+                                          ],
+                                          
+                                        ), 
+                                                                                                      
+                                  ],
+                                ),   
+                              ], //children
+                        )
                     ),
-                   
-              ),
       ),
+    ),
     );
   }
 }

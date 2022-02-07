@@ -9,10 +9,12 @@ final _navigatorKey = GlobalKey<NavigatorState>();
 
 class MyApp extends StatelessWidget {
   static Widget create() {
+    _navigatorKey.currentState?.pushNamedAndRemoveUntil(Routes.login, (r) => false);
     return BlocListener<AuthCubit, AuthState>(
       listener: (context, state) {
         if (state is AuthSignedOut){
-          _navigatorKey.currentState?.pushNamedAndRemoveUntil(Routes.circular, (r) => false);
+          _navigatorKey.currentState?.pushNamedAndRemoveUntil(Routes.login, (r) => false);
+          //_navigatorKey.currentState?.pushNamedAndRemoveUntil(Routes.circular, (r) => false);
 
 
         } else if (state is AuthSignedIn) {

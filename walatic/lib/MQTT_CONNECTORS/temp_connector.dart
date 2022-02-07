@@ -53,7 +53,7 @@ class TempProvider {
     }
 
     //subscriber
-    const topic = '1/casa/temp'; // Not a wildcard topic
+    const topic = 'casa/temp'; // Not a wildcard topic
     client.subscribe(topic, MqttQos.atMostOnce);
 
 

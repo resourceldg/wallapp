@@ -54,7 +54,7 @@ class PresProvider {
     }
 
     //subscriber
-    const topic = '1/casa/pres'; // Not a wildcard topic
+    const topic = 'casa/pres'; // Not a wildcard topic
     client.subscribe(topic, MqttQos.atMostOnce);
 
 

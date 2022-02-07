@@ -36,8 +36,8 @@ class Routes {
         return _buildRoute(EmailCreate.create);
       case signInEmail:
         return _buildRoute(EmailSignIn.create);
-      case Home_Page:
-        return _buildRoute(HomePage.create);
+     /*  case Home_Page:
+        return _buildRoute(HomePage.create); */
       case register:
         return _buildRoute(Register.create);
       case circular:

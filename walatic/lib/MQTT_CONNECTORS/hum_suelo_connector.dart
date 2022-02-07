@@ -23,7 +23,7 @@ class HumSueloProvider {
     /// client identifier, any supplied username/password and clean session,
     /// an example of a specific one below.
     final connMess = MqttConnectMessage()
-        .withClientIdentifier('Mqtt_MyClientUnique18')
+        .withClientIdentifier('Mqtt_MyClientUnique188')
         .withWillTopic('monitor') // If you set this you must set a will message
         .withWillMessage('hola')
         .startClean() // Non persistent session for testing
