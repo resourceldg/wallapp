@@ -19,12 +19,13 @@ import 'MQTT_CONNECTORS/termocuple_connector.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
+  /* 
   await TempProvider().init();
   await PresProvider().init();  
   await HumProvider().init();
   await CplProvider().init();
   await HumSueloProvider().init();
-  await TermocupleProvider().init();
+  await TermocupleProvider().init(); */
 
   SystemChrome.setPreferredOrientations(<DeviceOrientation>[
     DeviceOrientation.portraitUp,

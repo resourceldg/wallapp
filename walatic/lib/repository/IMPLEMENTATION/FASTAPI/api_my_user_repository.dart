@@ -9,7 +9,7 @@ class MyUserRepository extends MyUserRepositoryBase {
   @override
   Future<MyUser?> getMyUser() => provider.getMyUser();
 
- /*  @override
-  Future<void> saveMyUser(MyUser user) => provider.saveMyUser(user);  */
+   @override
+  Future<void> saveMyUser(MyUser user) => provider.saveMyUser(user);  
 }
  

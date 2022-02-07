@@ -13,8 +13,8 @@ class ApiAuth {
 }) async {
   print(email);
   print(password);
-  const url='https://wardixlab.com/login';
-  final response = await http.post(
+  const url='http://192.168.1.17:8000/login';
+  var response = await http.post(
     Uri.parse(url),
     headers: {'content-type': 'application/json'},
     body: jsonEncode({
