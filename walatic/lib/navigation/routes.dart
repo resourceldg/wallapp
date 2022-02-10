@@ -1,13 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:walatic/UI/ORGANISM_WIDGETS/circular.dart';
-import 'package:walatic/UI/PAGES/home_page.dart';
-import 'package:walatic/ui/email_create_screen.dart';
-import 'package:walatic/ui/email_signin_screen.dart';
-import 'package:walatic/ui/home_screen.dart';
-import 'package:walatic/ui/intro_screen.dart';
-import 'package:walatic/ui/login.dart';
-import 'package:walatic/ui/register.dart';
-import 'package:walatic/ui/splash_screen.dart';
+import 'package:realwallapp/UI/ORGANISM_WIDGETS/circular.dart';
+
+import 'package:realwallapp/ui/login.dart';
+
+import 'package:realwallapp/ui/splash_screen.dart';
 
 class Routes {
   static const splash = '/';
@@ -24,22 +20,13 @@ class Routes {
     print('Route name: ${routeSettings.name}');
 
     switch (routeSettings.name) {
-      case splash:
-        return _buildRoute(SplashScreen.create);
-      case intro:
-        return _buildRoute(IntroScreen.create);
-      case home:
-        return _buildRoute(HomeScreen.create);
+  
       case login:
         return _buildRoute(LoginPage.create);
       case createAccount:
-        return _buildRoute(EmailCreate.create);
-      case signInEmail:
-        return _buildRoute(EmailSignIn.create);
      /*  case Home_Page:
-        return _buildRoute(HomePage.create); */
-      case register:
-        return _buildRoute(Register.create);
+        return _buildRoute(HomePage.create);  */
+  
       case circular:
         return _buildRoute(Circular.create);
       default:

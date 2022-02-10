@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:walatic/PROVIDERS/SENSORS_PROVIDERS/cpl.dart';
-import 'package:walatic/PROVIDERS/SENSORS_PROVIDERS/humidity.dart';
-import 'package:walatic/PROVIDERS/SENSORS_PROVIDERS/pressure.dart';
-import 'package:walatic/PROVIDERS/SENSORS_PROVIDERS/suelo.dart';
-import 'package:walatic/PROVIDERS/SENSORS_PROVIDERS/temperature.dart';
-import 'package:walatic/PROVIDERS/SENSORS_PROVIDERS/termocuple.dart';
+import 'package:realwallapp/PROVIDERS/SENSORS_PROVIDERS/cpl.dart';
+import 'package:realwallapp/PROVIDERS/SENSORS_PROVIDERS/humidity.dart';
+import 'package:realwallapp/PROVIDERS/SENSORS_PROVIDERS/pressure.dart';
+import 'package:realwallapp/PROVIDERS/SENSORS_PROVIDERS/suelo.dart';
+import 'package:realwallapp/PROVIDERS/SENSORS_PROVIDERS/temperature.dart';
+import 'package:realwallapp/PROVIDERS/SENSORS_PROVIDERS/termocuple.dart';
 
 
 

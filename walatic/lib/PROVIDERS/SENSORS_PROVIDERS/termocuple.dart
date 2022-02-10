@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:mqtt_client/mqtt_client.dart';
 import 'package:syncfusion_flutter_gauges/gauges.dart';
-import 'package:walatic/MQTT_CONNECTORS/pres_connector.dart';
-import 'package:walatic/MQTT_CONNECTORS/termocuple_connector.dart';
+import 'package:realwallapp/MQTT_CONNECTORS/pres_connector.dart';
+import 'package:realwallapp/MQTT_CONNECTORS/termocuple_connector.dart';
 
 
 

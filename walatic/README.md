@@ -1,4 +1,4 @@
-# walatic
+# realwallapp
 
 A new Flutter project.
 

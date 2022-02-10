@@ -1,6 +1,6 @@
 {
-    "name": "walatic",
-    "short_name": "walatic",
+    "name": "realwallapp",
+    "short_name": "realwallapp",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",

@@ -1,4 +1,4 @@
-package com.example.walatic
+package com.example.realwallapp
 
 import io.flutter.embedding.android.FlutterActivity
 

@@ -1,4 +1,4 @@
-name: walatic
+name: realwallapp
 description: A new Flutter project.
 
 # The following line prevents the package from being accidentally published to
@@ -24,34 +24,19 @@ dependencies:
   flutter:
     sdk: flutter
 
-
-  # The following adds the Cupertino Icons font to your application.
-  # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.2
   mqtt_client: ^9.4.2
   provider: ^6.0.0
   rive: ^0.7.22
-  firebase_core: ^1.5.0
-  firebase_auth: ^3.0.2
   font_awesome_flutter: ^9.1.0
-  cloud_firestore: ^2.5.1
-  firebase_storage: ^10.0.3
-  google_sign_in: ^5.1.0
-  flutter_bloc: ^7.2.0
   equatable: ^2.0.3
   page_indicator: ^0.4.1
-  flutter_facebook_auth: ^3.5.1
   flutter_hooks: ^0.18.0
-  image_picker: ^0.8.4
   cached_network_image: ^3.1.0
   syncfusion_flutter_gauges: ^19.2.62
   customgauge: ^1.0.1
-  flutter_secure_storage: ^5.0.1
-  shared_preferences: ^2.0.7
+  flutter_secure_storage: ^5.0.2
   jwt_decoder: ^2.0.1
-  
-
-
 
 
 
@@ -71,29 +56,9 @@ flutter:
   uses-material-design: true
 
   # To add assets to your application, add an assets section, like this:
-  assets:
-    - octocat.riv
-    - switche.riv
-    - onoff.riv
-    - assets/img/
-    - assets/
-
-  fonts:
-    - family: WorkSansSemiBold
-      fonts:
-        - asset: assets/fonts/Work_Sans/WorkSans-SemiBold.ttf
-        - asset: assets/fonts/Work_Sans/SonsieOne-Regular.ttf
-        
-
-    - family: WorkSansBold
-      fonts:
-        - asset: assets/fonts/Work_Sans/WorkSans-Bold.ttf
-
-    - family: WorkSansMedium
-      fonts:
-        - asset: assets/fonts/Work_Sans/WorkSans-Medium.ttf
-  
-  # - images/a_dot_ham.jpeg
+  # assets:
+  #   - images/a_dot_burr.jpeg
+  #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.

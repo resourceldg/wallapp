@@ -1,5 +1,0 @@
-<resources>
-    <string name="app_name">wallauth</string>
-    <string name="facebook_app_id">214721863873047</string> 
-    <string name="fb_login_protocol_scheme">fb214721863873047</string>
-</resources>

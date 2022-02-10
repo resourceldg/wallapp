@@ -1,18 +1,20 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:walatic/bloc/auth_cubit.dart';
-import 'package:walatic/navigation/routes.dart';
-import 'package:walatic/repository/IMPLEMENTATION/FASTAPI/api_auth.dart';
 
+
+import 'package:realwallapp/PROVIDERS/api_auth.dart';
+
+import 'package:realwallapp/navigation/routes.dart';
+
+final _navigatorKey = GlobalKey<NavigatorState>();
 
 class LoginPage extends StatelessWidget {
+
   
   static Widget create(BuildContext context) => LoginPage();
 
   @override
   Widget build(BuildContext context) {
-    final authCubit = context.watch<AuthCubit>();
-    final isSigningIn = authCubit.state is AuthSigningIn;
+   
     final _formKey = GlobalKey<FormState>();
     final _emailController = TextEditingController();
     final _passwordController = TextEditingController();
@@ -25,9 +27,9 @@ class LoginPage extends StatelessWidget {
     return Scaffold(
           resizeToAvoidBottomInset: false,
           body: Container(
-            child: BlocBuilder<AuthCubit, AuthState>(
-              builder: (_, state) {
-            return SingleChildScrollView(
+            child: (
+        
+             SingleChildScrollView(
               child: Container(
                 padding: const EdgeInsets.all(24.0),
                 margin: const EdgeInsets.only(top: 50),
@@ -51,12 +53,7 @@ class LoginPage extends StatelessWidget {
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            if (state is AuthSigningIn) Center(child: CircularProgressIndicator()),
-                            if (state is AuthError)
-                              Text(
-                                state.message,
-                                style: TextStyle(color: Colors.red, fontSize: 24),
-                              ),
+                            
                             SizedBox(height: 8),
                             TextFormField(
                               controller: _emailController,
@@ -73,13 +70,10 @@ class LoginPage extends StatelessWidget {
                             Center(
                               child: ElevatedButton(
                                 child: const Text('Entrar',style: TextStyle( fontSize: 18)),
-                                onPressed: () {
-                                  ApiAuth().auth(email: _emailController.text, password: _passwordController.text);
-                                  if (_formKey.currentState?.validate() == true) {
-                                    /* context.read<AuthCubit>().signInWithEmailAndPassword(
-                                          _emailController.text,
-                                          _passwordController.text,
-                                        ); */
+                                onPressed: () {                              
+                                  if (_formKey.currentState?.validate() == true) {           
+                                  ApiAuth().auth(email: _emailController.text, password: _passwordController.text);                                   
+                                  _navigatorKey.currentState?.pushNamedAndRemoveUntil(Routes.circular, (r) => false);
                                        
                                   }
                                 },
@@ -89,19 +83,13 @@ class LoginPage extends StatelessWidget {
                         ),
                       ),
                     ),
-                    if (isSigningIn) CircularProgressIndicator(),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 30.0),
-                      child: Column(
                     
-                      ),
-                    )
                   ],
                 ),
               ),
-            );
+            )
       
-              },
+              
        ),
           ) );
     
